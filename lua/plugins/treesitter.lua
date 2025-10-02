@@ -13,7 +13,7 @@ return {
                 "python",
                 "bash",
                 "markdown",
-                "markdown-inline",
+                "markdown_inline",
                 "java",
                 "html",
                 "javascript",
