@@ -1,9 +1,13 @@
+-- enable color support
+vim.opt.termguicolors = true
 -- leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 -- number
 vim.opt.relativenumber = true
 vim.opt.number = true
+-- sing columun
+vim.o.signcolumn = "yes"
 -- wrap
 vim.o.wrap = false
 -- scrolloff
