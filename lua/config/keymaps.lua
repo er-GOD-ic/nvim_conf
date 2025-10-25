@@ -13,5 +13,22 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 
+-- split window
+vim.keymap.set("n", "<leader><C-h>", "<cmd>vsplit<CR> <C-w>h <cmd>enew<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader><C-j>", "<cmd>split<CR>  <C-w>j <cmd>enew<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader><C-k>", "<cmd>split<CR>  <C-w>k <cmd>enew<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader><C-l>", "<cmd>vsplit<CR> <C-w>l <cmd>enew<CR>", { noremap = true, silent = true })
+
+local resize = require("config.resize")
+vim.keymap.set("n", "<A-h>", resize.ResizeLeft, { noremap = true, silent = true })
+vim.keymap.set("n", "<A-j>", resize.ResizeDown, { noremap = true, silent = true })
+vim.keymap.set("n", "<A-k>", resize.ResizeUp, { noremap = true, silent = true })
+vim.keymap.set("n", "<A-l>", resize.ResizeRight, { noremap = true, silent = true })
+
 -- clear search
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch\n", { noremap = true, silent = true })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch\n", { noremap = true, silent = true, desc = "clear search" })
+
+-- open term
+vim.keymap.set("n", "<leader>t", "<cmd>term<CR>", { noremap = true, silent = true, desc = "open terminal" })
+-- escape term
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "escape terminal" })
