@@ -4,23 +4,10 @@ return {
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		-- all clients
-		vim.lsp.config("*", {
-			capabilities = capabilities,
-		})
-		-- lua
-		vim.lsp.enable("lua_ls")
-		vim.lsp.config("lua_ls", {
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-				},
-			},
-		})
-		-- nix
-		vim.lsp.enable("nixd")
-		vim.lsp.config("nixd", {})
+		vim.lsp.config("*", { capabilities = capabilities })
+
+		vim.lsp.enable("lua_ls") -- lua
+		vim.lsp.enable("nixd") -- nix
 
 		vim.diagnostic.config({
 			virtual_text = true,
