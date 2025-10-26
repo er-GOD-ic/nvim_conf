@@ -22,5 +22,6 @@ return {
             group_empty_dirs = false,
         })
         vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle filesystem right<CR>", { desc = "Toggle Neo-tree" })
+        vim.keymap.set("n", "<C-S-e>", "<cmd>Neotree focus<CR>", { desc = "Focus Neo-tree" })
     end,
 }
