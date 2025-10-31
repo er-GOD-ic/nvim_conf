@@ -29,6 +29,6 @@ vim.keymap.set("n", "<A-l>", resize.ResizeRight, { noremap = true, silent = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch\n", { noremap = true, silent = true, desc = "clear search" })
 
 -- open term
-vim.keymap.set("n", "<leader>t", "<cmd>term<CR>", { noremap = true, silent = true, desc = "open terminal" })
+vim.keymap.set("n", "<leader>t", "<cmd>term<CR>a", { noremap = true, silent = true, desc = "open terminal" })
 -- escape term
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "escape terminal" })

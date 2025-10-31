@@ -19,10 +19,12 @@ vim.keymap.set("n", "<leader>l", ":Lazy<CR>", { desc = "open lazy window" })
 
 -- Setup lazy.nvim
 require("lazy").setup({
-
     spec = {
         { import = "plugins" },
     },
     install = { colorscheme = { "habamax" } }, -- colorscheme that will be used when installing plugins.
     checker = { enabled = true },           -- automatically check for plugin updates
+    ui = {
+        border = "rounded",
+    },
 })
