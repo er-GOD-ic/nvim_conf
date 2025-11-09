@@ -18,7 +18,6 @@ M.isExcludeFt = function(direction)
     local filetype = vim.fn.getbufvar(vim.fn.winbufnr(vim.fn.winnr(direction)), "&filetype")
     for _, ft in ipairs(exclude_ft) do
         if filetype == ft then
-            print("resizing window is exclude_ft")
             return true
         end
     end
@@ -55,7 +54,6 @@ end
 M.ResizeUp = function()
     -- if no vertically adjacent windows exist, do not resize.
     if not M.hasVerticalNeighbors() then
-        print("has no vertical neighbor")
         return
     end
 
@@ -73,7 +71,6 @@ end
 M.ResizeDown = function()
     -- if no vertically adjacent windows exist, do not resize.
     if not M.hasVerticalNeighbors() then
-        print("has no vertical neighbor")
         return
     end
 
