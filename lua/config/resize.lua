@@ -1,34 +1,40 @@
 local M = {}
 
 local resize_step = 2
+local exclude_ft = { "neo-tree" }
 
 M.hasVerticalNeighbors = function()
-    return vim.fn.winnr("k") ~= vim.fn.winnr() and vim.fn.winnr("j") ~= vim.fn.winnr()
+    return vim.fn.winnr("k") ~= vim.fn.winnr() or vim.fn.winnr("j") ~= vim.fn.winnr()
 end
 
 M.hasHorizontalNeighbors = function()
-    return vim.fn.winnr("h") ~= vim.fn.winnr() and vim.fn.winnr("l") ~= vim.fn.winnr()
+    return vim.fn.winnr("h") ~= vim.fn.winnr() or vim.fn.winnr("l") ~= vim.fn.winnr()
 end
 
-M.isRightMost = function()
-    return vim.fn.winnr() == vim.fn.winnr("l")
+---comment
+---@param direction string Top=k Bottom=j Right=l Left=h
+---@return boolean
+M.isExcludeFt = function(direction)
+    local filetype = vim.fn.getbufvar(vim.fn.winbufnr(vim.fn.winnr(direction)), "&filetype")
+    for _, ft in ipairs(exclude_ft) do
+        if filetype == ft then
+            print("resizing window is exclude_ft")
+            return true
+        end
+    end
+    return false
 end
 
-M.isLeftMost = function()
-    return vim.fn.winnr() == vim.fn.winnr("h")
-end
-
-M.isBottomMost = function()
-    return vim.fn.winnr() == vim.fn.winnr("j")
-end
-
-M.isTopMost = function()
-    return vim.fn.winnr() == vim.fn.winnr("k")
+---comment
+---@param direction string Top=k, Bottom=j, Right=l, Left=h
+---@return boolean
+M.isEdgeWin = function(direction)
+    return vim.fn.winnr() == vim.fn.winnr(direction)
 end
 
 M.ResizeLeft = function()
-    if M.isRightMost() then
-        if not M.isLeftMost() then
+    if M.isEdgeWin("l") or M.isExcludeFt("l") then
+        if not M.isEdgeWin("h") or not M.isExcludeFt("h") then
             vim.cmd("wincmd" .. resize_step .. ">")
         end
     else
@@ -37,8 +43,8 @@ M.ResizeLeft = function()
 end
 
 M.ResizeRight = function()
-    if M.isRightMost() then
-        if not M.isLeftMost() then
+    if M.isEdgeWin("l") or M.isExcludeFt("l") then
+        if not M.isEdgeWin("h") or not M.isExcludeFt("h") then
             vim.cmd("wincmd" .. resize_step .. "<")
         end
     else
@@ -47,13 +53,17 @@ M.ResizeRight = function()
 end
 
 M.ResizeUp = function()
-    if M.isBottomMost() then
-        if not M.isTopMost() then
+    -- if no vertically adjacent windows exist, do not resize.
+    if not M.hasVerticalNeighbors() then
+        print("has no vertical neighbor")
+        return
+    end
+
+    if M.isEdgeWin("j") or M.isExcludeFt("j") then
+        if not M.isEdgeWin("k") or not M.isExcludeFt("k") then
             vim.cmd("wincmd" .. resize_step .. "+")
         else
-            if M.hasVerticalNeighbors() then
-                vim.cmd("wincmd" .. resize_step .. "-")
-            end
+            vim.cmd("wincmd" .. resize_step .. "-")
         end
     else
         vim.cmd("wincmd" .. resize_step .. "-")
@@ -61,8 +71,14 @@ M.ResizeUp = function()
 end
 
 M.ResizeDown = function()
-    if M.isBottomMost() then
-        if not M.isTopMost() then
+    -- if no vertically adjacent windows exist, do not resize.
+    if not M.hasVerticalNeighbors() then
+        print("has no vertical neighbor")
+        return
+    end
+
+    if M.isEdgeWin("j") or M.isExcludeFt("j") then
+        if not M.isEdgeWin("k") or not M.isExcludeFt("k") then
             vim.cmd("wincmd" .. resize_step .. "-")
         else
             vim.cmd("wincmd" .. resize_step .. "+")
