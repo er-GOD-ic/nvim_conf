@@ -9,6 +9,7 @@ return {
 		vim.lsp.enable("lua_ls") -- lua
 		vim.lsp.enable("nixd") -- nix
 		vim.lsp.enable("rust-analyzer") -- rust
+        vim.lsp.enable("jdtls") -- java
 
 		vim.diagnostic.config({
 			virtual_text = true,
