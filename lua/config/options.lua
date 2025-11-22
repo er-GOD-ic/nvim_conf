@@ -21,6 +21,8 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 -- clipboard
 vim.opt.clipboard = "unnamedplus"
+-- split window
+vim.opt.splitkeep = "screen"
 
 -- encoding
 vim.opt.encoding = "utf-8"

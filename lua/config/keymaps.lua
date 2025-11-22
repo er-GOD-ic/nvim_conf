@@ -4,8 +4,9 @@ vim.keymap.set("n", "<leader>W", "<cmd>wa<cr>", { noremap = true, silent = true,
 -- quit
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { noremap = true, silent = true, desc = "close current buffer" })
 vim.keymap.set("n", "<leader>Q", "<cmd>qa<cr>", { noremap = true, silent = true, desc = "quit neovim" })
-vim.keymap.set("n", "<leader>x", "<cmd>x<cr>", { noremap = true, silent = true, desc = "save and close current buffer" })
-vim.keymap.set("n", "<leader>X", "<cmd>xa<cr>", { noremap = true, silent = true, desc = "save and quit neovim" })
+
+-- clear search
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch\n", { noremap = true, silent = true, desc = "clear search" })
 
 -- move focus
 vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
@@ -19,14 +20,12 @@ vim.keymap.set("n", "<leader><C-j>", "<cmd>split<CR>  <C-w>j <cmd>enew<CR>", { n
 vim.keymap.set("n", "<leader><C-k>", "<cmd>split<CR>  <C-w>k <cmd>enew<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader><C-l>", "<cmd>vsplit<CR> <C-w>l <cmd>enew<CR>", { noremap = true, silent = true })
 
+-- resize window
 local resize = require("config.resize")
 vim.keymap.set("n", "<A-h>", resize.ResizeLeft, { noremap = true, silent = true })
 vim.keymap.set("n", "<A-j>", resize.ResizeDown, { noremap = true, silent = true })
 vim.keymap.set("n", "<A-k>", resize.ResizeUp, { noremap = true, silent = true })
 vim.keymap.set("n", "<A-l>", resize.ResizeRight, { noremap = true, silent = true })
-
--- clear search
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch\n", { noremap = true, silent = true, desc = "clear search" })
 
 -- terminal
 vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { noremap = true, silent = true, desc = "toggle terminal" })
