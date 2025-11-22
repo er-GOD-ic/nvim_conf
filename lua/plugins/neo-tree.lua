@@ -19,7 +19,10 @@ return {
                 },
             },
             follow_current_file = { enabled = false },
-            group_empty_dirs = false,
+            filesystem = {
+                group_empty_dirs = true,
+                scan_mode = "deep",
+            },
         })
         vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle filesystem right<CR>", { desc = "Toggle Neo-tree" })
         vim.keymap.set("n", "<C-S-e>", "<cmd>Neotree focus<CR>", { desc = "Focus Neo-tree" })
