@@ -10,6 +10,7 @@ return {
 		vim.lsp.enable("nixd") -- nix
 		vim.lsp.enable("rust-analyzer") -- rust
         vim.lsp.enable("jdtls") -- java
+        vim.lsp.enable("clangd") -- c, cpp
 
 		vim.diagnostic.config({
 			virtual_text = true,
