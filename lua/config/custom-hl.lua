@@ -54,7 +54,7 @@ M.hml_lines = function()
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "WinScrolled", "CursorMoved", "CursorMovedI" }, {
-	pattern = { "*.lua", "*.rs", "*.nix", "*.java" },
+	pattern = { "*.lua", "*.rs", "*.nix", "*.java", ".c", ".cpp" },
 	callback = M.hml_lines,
 })
 
