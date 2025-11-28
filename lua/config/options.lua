@@ -6,6 +6,9 @@ vim.g.maplocalleader = "\\"
 -- number
 vim.opt.relativenumber = true
 vim.opt.number = true
+-- hilight line/col
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 -- sing columun
 vim.o.signcolumn = "yes"
 -- wrap
