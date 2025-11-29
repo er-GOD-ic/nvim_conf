@@ -17,7 +17,6 @@ return {
             custom_highlights = function(colors)
                 return {
                     CursorVisual = { bg = colors.mauve },
-                    CursorLineNr = { bg = "#2a2b3d" },
                     CursorColumn = { bg = "#2a2b3d" },
                 }
             end,
