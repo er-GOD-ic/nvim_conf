@@ -26,6 +26,16 @@ return {
             [[                                                                       ]],
         }
 
+        -- lazyvimの情報を乗せるためのプレースホルダ
+        dashboard.section.footer = {
+            type = "text",
+            val = {},
+            opts = {
+                position = "center",
+                hl = "Comment",
+            },
+        }
+
         dashboard.section.buttons.val = {
             dashboard.button("e", "  New file", "<cmd>ene <CR>"),
             dashboard.button("f", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
@@ -34,30 +44,27 @@ return {
             dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
         }
 
-        -- Lazy.nvim の読み込みステータス
-        local lazy_stats = require("lazy").stats()
-        local loaded_plugins = lazy_stats.loaded
-        local total_plugins = lazy_stats.count
-        local startup_ms = math.floor(lazy_stats.startuptime * 100 + 0.5) / 100
-
-        dashboard.section.lazy_info = {
-            type = "text",
-            val = string.format("⚡️ %d/%d plugins loaded in %.2fms", loaded_plugins, total_plugins, startup_ms),
-            opts = {
-                position = "center",
-                hl = "Comment", -- グレーっぽい色で表示
-            },
-        }
-
         dashboard.config.layout = {
             { type = "padding", val = 5 },
             dashboard.section.header,
             { type = "padding", val = 5 },
             dashboard.section.buttons,
             { type = "padding", val = 1 },
-            dashboard.section.lazy_info,
+            dashboard.section.footer,
         }
 
         alpha.setup(dashboard.config)
+
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "LazyVimStarted",
+            callback = function()
+                local stats = require("lazy").stats()
+                local version = string.format(" v%d.%d.%d", vim.version().major, vim.version().minor, vim.version().patch)
+                local plugins = string.format(" %d/%d plugins loaded in %.2fms", stats.loaded, stats.count, stats.startuptime)
+                local footer = version .. "\t" .. plugins .. "\n"
+                dashboard.section.footer.val = footer
+                pcall(vim.cmd.AlphaRedraw)
+            end,
+        })
     end,
 }
