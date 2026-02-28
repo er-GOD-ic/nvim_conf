@@ -11,7 +11,7 @@ return {
         vim.lsp.enable("rust-analyzer") -- rust
         vim.lsp.enable("jdtls")   -- java
         vim.lsp.enable("clangd")  -- c, cpp
-        vim.lsp.enable("ts_l")     -- ts
+        vim.lsp.enable("ts_ls")     -- ts
 
         vim.diagnostic.config({
             virtual_text = true,
