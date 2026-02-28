@@ -17,6 +17,8 @@ return {
                 "markdown_inline",
                 "java",
                 "html",
+                "typescript",
+                "tsx",
                 "javascript",
                 "php",
                 "toml",
