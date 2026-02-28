@@ -1,7 +1,10 @@
+local is_windows = vim.fn.has("win32") == 1
+
 return {
   {
     "vhyrro/luarocks.nvim",
     priority = 1001, -- 最優先で読み込む
+    enabled = not is_windows,
     opts = {
       rocks = { "magick" },
     },
@@ -10,6 +13,7 @@ return {
     "3rd/image.nvim",
     dependencies = { "luarocks.nvim" },
     event = "VeryLazy",
+    enabled = not is_windows,
     config = function()
       require("image").setup({
         backend = "ueberzug",
