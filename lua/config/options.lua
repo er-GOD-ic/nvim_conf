@@ -9,7 +9,7 @@ vim.opt.number = true
 -- hilight line/col
 vim.opt.cursorline = false
 vim.opt.cursorcolumn = false
--- sing columun
+-- sign columun
 vim.o.signcolumn = "yes"
 -- wrap
 vim.o.wrap = false
