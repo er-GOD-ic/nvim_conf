@@ -1,6 +1,6 @@
 local M = {}
 
-local function setup_hml_signs() if M._hml_signs_defined then return end -- ハイライトグループ（好みで色を変更してください）
+local function setup_hml_signs() if M._hml_signs_defined then return end
 	vim.api.nvim_command("highlight HmlNumHL_H guifg=#b4befe gui=bold")
 	vim.api.nvim_command("highlight HmlNumHL_M guifg=#b4befe gui=bold")
 	vim.api.nvim_command("highlight HmlNumHL_L guifg=#b4befe gui=bold")
