@@ -16,6 +16,8 @@ vim.o.wrap = false
 -- scrolloff
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 15
+-- fillchar
+vim.opt.fillchars = { eob = " " }
 -- indent
 vim.opt.smartindent = true
 vim.opt.expandtab = true
