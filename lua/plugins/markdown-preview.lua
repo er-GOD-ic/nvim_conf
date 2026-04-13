@@ -1,41 +1,52 @@
- return {
+return {
   "iamcco/markdown-preview.nvim",
-
-  -- Markdownファイルのときだけ読み込む
+  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
   ft = { "markdown" },
+  build = function()
+    -- プラグインを読み込む（opt の場合に必要）
+    pcall(vim.cmd, "packadd markdown-preview.nvim")
 
-  -- コマンドでも起動可能
-  cmd = {
-    "MarkdownPreviewToggle",
-    "MarkdownPreview",
-    "MarkdownPreviewStop",
-  },
+    -- node があるか
+    if vim.fn.exepath("node") == "" then
+      print("[markdown-preview.nvim] node が PATH にありません。node を入れてください。")
+      return
+    end
 
-  init = function()
-    vim.g.mkdp_filetypes = { "markdown" }
-  end,
+    -- yarn があるなら yarn、なければ npm を使う
+    local installer_cmd
+    if vim.fn.exepath("yarn") ~= "" then
+      installer_cmd = "yarn install --production --frozen-lockfile"
+    elseif vim.fn.exepath("npm") ~= "" then
+      installer_cmd = "npm ci --production --legacy-peer-deps"
+    else
+      print("[markdown-preview.nvim] yarn/npm が見つかりません。")
+      return
+    end
 
-  -- ビルド処理
-  build = "cd app & npm install",
+    -- プラグインの app ディレクトリでインストール（lazy の置き場所に依存）
+    local data = vim.fn.stdpath("data")
+    local candidates = {
+      data .. "/lazy/markdown-preview.nvim/app",
+      data .. "/lazy/markdown-preview.nvim",
+    }
+    local target = nil
+    for _, p in ipairs(candidates) do
+      if vim.fn.isdirectory(p) == 1 then
+        target = p
+        break
+      end
+    end
+    if not target then
+      print("[markdown-preview.nvim] プラグインディレクトリが見つかりません: " .. data .. "/lazy/markdown-preview.nvim")
+      return
+    end
 
-  -- 設定
-  init = function()
-    -- 自動起動しない
-    vim.g.mkdp_auto_start = 0
-
-    -- バッファ閉じたら停止
-    vim.g.mkdp_auto_close = 1
-
-    -- 更新タイミング
-    vim.g.mkdp_refresh_slow = 0
-
-    -- ブラウザ指定（Windows）
-    vim.g.mkdp_browser = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
-
-    -- プレビューURL
-    vim.g.mkdp_open_to_the_world = 0
-
-    -- ポート固定（必要なら）
-    -- vim.g.mkdp_port = 8080
+    local cmd = "cd " .. vim.fn.shellescape(target) .. " && " .. installer_cmd
+    local out = vim.fn.system(cmd)
+    if vim.v.shell_error ~= 0 then
+      print("[markdown-preview.nvim] install に失敗しました: " .. out)
+    else
+      print("[markdown-preview.nvim] install 成功: " .. out)
+    end
   end,
 }

@@ -17,6 +17,7 @@ return {
             sources = {
                 null_ls.builtins.formatting.stylua,
                 null_ls.builtins.formatting.alejandra,
+                null_ls.builtins.diagnostics.stylelint,
                 rustfmt,
             },
         })
