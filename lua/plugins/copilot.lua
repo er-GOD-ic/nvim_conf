@@ -4,6 +4,9 @@ return {
     event = "InsertEnter",
     config = function()
         require("copilot").setup({
+            filetypes = {
+               markdown = true,
+            },
             suggestion = {
                 enabled = true,
                 auto_trigger = true, -- ← 入力中に自動表示
