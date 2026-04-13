@@ -14,10 +14,20 @@ return {
 
     -- yarn があるなら yarn、なければ npm を使う
     local installer_cmd
+    local app_dir = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
+    local lockfile = app_dir .. "/package-lock.json"
+
     if vim.fn.exepath("yarn") ~= "" then
-      installer_cmd = "yarn install --production --frozen-lockfile"
+      installer_cmd = "yarn install"
+
     elseif vim.fn.exepath("npm") ~= "" then
-      installer_cmd = "npm ci --production --legacy-peer-deps"
+      -- package-lock.json の存在チェック
+      if vim.loop.fs_stat(lockfile) then
+        installer_cmd = "npm ci"
+      else
+        installer_cmd = "npm install"
+      end
+
     else
       print("[markdown-preview.nvim] yarn/npm が見つかりません。")
       return
