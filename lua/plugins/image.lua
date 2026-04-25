@@ -16,7 +16,7 @@ return {
     enabled = not is_windows,
     config = function()
       require("image").setup({
-        backend = "ueberzug",
+        backend = "kitty",
         integrations = {
           markdown = {
             enabled = true,
