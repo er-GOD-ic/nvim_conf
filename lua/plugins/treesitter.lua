@@ -1,5 +1,8 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+        "nvim-treesitter/playground",
+    },
     branch = "master",
     lazy = false,
     build = ":TSUpdate",
@@ -8,6 +11,7 @@ return {
             ensure_installed = {
                 "lua",
                 "nix",
+                "scheme",
                 "c",
                 "cpp",
                 "rust",
@@ -30,6 +34,7 @@ return {
             auto_install = false,
             highlight = { enable = true },
             indent = { enable = true },
+            playground = { enable = true }
         })
     end,
 }

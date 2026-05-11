@@ -32,3 +32,5 @@ vim.opt.splitkeep = "screen"
 -- encoding
 vim.opt.encoding = "utf-8"
 vim.opt.fileencodings = { "utf-8", "cp932", "euc-jp", "iso-2022-jp", "latin1" }
+
+vim.treesitter.language.register("scheme", "kanata")
