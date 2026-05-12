@@ -30,7 +30,6 @@ return {
         vim.api.nvim_create_autocmd("ModeChanged", {
             pattern = { "t:nt", "nt:n" },
             callback = function()
-                print(vim.v.event.old_mode, "->", vim.v.event.new_mode)
                 require("neo-tree.sources.manager").refresh("filesystem")
             end,
         })
