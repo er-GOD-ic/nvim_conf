@@ -26,5 +26,13 @@ return {
         })
         vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle filesystem right<CR>", { desc = "Toggle Neo-tree" })
         vim.keymap.set("n", "<C-S-e>", "<cmd>Neotree focus<CR>", { desc = "Focus Neo-tree" })
+
+        vim.api.nvim_create_autocmd("ModeChanged", {
+            pattern = { "t:nt", "nt:n" },
+            callback = function()
+                print(vim.v.event.old_mode, "->", vim.v.event.new_mode)
+                require("neo-tree.sources.manager").refresh("filesystem")
+            end,
+        })
     end,
 }
