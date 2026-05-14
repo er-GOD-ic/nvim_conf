@@ -22,9 +22,9 @@ local function setup_hml_signs()
   vim.api.nvim_set_hl(0, "HmlNumHL_L", { fg = color_l, bold = true, default = true })
 
   -- サイン定義
-  vim.fn.sign_define("HmlSignH", { text = " ", texthl = "", numhl = "HmlNumHL_H" })
-  vim.fn.sign_define("HmlSignM", { text = " ", texthl = "", numhl = "HmlNumHL_M" })
-  vim.fn.sign_define("HmlSignL", { text = " ", texthl = "", numhl = "HmlNumHL_L" })
+  vim.fn.sign_define("HmlSignH", { text = "", texthl = "", numhl = "HmlNumHL_H" })
+  vim.fn.sign_define("HmlSignM", { text = "", texthl = "", numhl = "HmlNumHL_M" })
+  vim.fn.sign_define("HmlSignL", { text = "", texthl = "", numhl = "HmlNumHL_L" })
 
   M._hml_signs_defined = true
 end
