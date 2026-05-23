@@ -30,3 +30,16 @@ vim.keymap.set("n", "<A-l>", resize.ResizeRight, { noremap = true, silent = true
 -- terminal
 vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { noremap = true, silent = true, desc = "toggle terminal" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "escape terminal" })
+
+-- markdown
+-- bold
+vim.keymap.set("n", "<leader>mb", "diwi**<esc>pa**<esc>")
+vim.keymap.set("v", "<leader>mb", "di**<esc>pa**<esc>")
+-- underline
+vim.keymap.set("n", "<leader>mu", "diwi<u><esc>pa</u><esc>")
+vim.keymap.set("v", "<leader>mu", "di<u><esc>pa</u><esc>")
+-- math block
+vim.keymap.set("n", "<leader>mm", "diwi$<esc>pa$<esc>")
+vim.keymap.set("v", "<leader>mm", "di$<esc>pa$<esc>")
+-- force break
+vim.keymap.set("i", "<C-M>", "<br><cr>")

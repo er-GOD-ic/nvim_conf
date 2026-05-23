@@ -59,4 +59,7 @@ return {
       print("[markdown-preview.nvim] install 成功: " .. out)
     end
   end,
+  config = function()
+    vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<cr>")
+  end
 }
