@@ -1,0 +1,24 @@
+return {
+    "atusy/budouxify.nvim",
+    dependencies = {
+        "atusy/budoux.lua",
+    },
+    config = function()
+        vim.keymap.set("n", "W", function()
+            local pos = require("budouxify.motion").find_forward({
+                head = true,
+            })
+            if pos then
+                vim.api.nvim_win_set_cursor(0, { pos.row, pos.col })
+            end
+        end)
+        vim.keymap.set("n", "E", function()
+            local pos = require("budouxify.motion").find_forward({
+                head = false,
+            })
+            if pos then
+                vim.api.nvim_win_set_cursor(0, { pos.row, pos.col })
+            end
+        end)
+    end,
+}

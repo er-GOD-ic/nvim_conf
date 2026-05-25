@@ -1,14 +1,20 @@
+local is_nixos = vim.loop.os_uname().sysname == "Linux"
+    and vim.fn.isdirectory("/nix/store") == 1
+
 return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
         "nvim-treesitter/playground",
     },
-    branch = "master",
+    enabled = false,
+    branch = "main",
     lazy = false,
-    build = ":TSUpdate",
+
+    build = is_nixos and nil or ":TSUpdate",
+
     config = function()
         require("nvim-treesitter.configs").setup({
-            ensure_installed = {
+            ensure_installed = is_nixos and {} or {
                 "lua",
                 "nix",
                 "scheme",
@@ -30,11 +36,21 @@ return {
                 "json",
                 "hjson",
             },
-            sync_install = true,
-            auto_install = false,
-            highlight = { enable = true },
-            indent = { enable = true },
-            playground = { enable = true }
+
+            sync_install = false,
+            auto_install = not is_nixos,
+
+            highlight = {
+                enable = true,
+            },
+
+            indent = {
+                enable = true,
+            },
+
+            playground = {
+                enable = true,
+            },
         })
     end,
 }
