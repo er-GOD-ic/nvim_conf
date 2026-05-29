@@ -1,3 +1,5 @@
+-- reload config
+vim.keymap.set('n', '<leader>rs', ':source $MYVIMRC<CR>', { desc = "Reload Config" })
 -- save
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { noremap = true, silent = true, desc = "save current buffer" })
 vim.keymap.set("n", "<leader>W", "<cmd>wa<cr>", { noremap = true, silent = true, desc = "save all buffers" })
@@ -28,8 +30,18 @@ vim.keymap.set("n", "<A-k>", resize.ResizeUp, { noremap = true, silent = true })
 vim.keymap.set("n", "<A-l>", resize.ResizeRight, { noremap = true, silent = true })
 
 -- terminal
-vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { noremap = true, silent = true, desc = "toggle terminal" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "escape terminal" })
+
+-- copy path
+vim.keymap.set("n", "<leader>yp", function()
+    local path = vim.api.nvim_buf_get_name(0)
+    if path == "" then
+        print("No file path to copy")
+        return
+    end
+    vim.fn.setreg("+", path)
+    print("Copied file path: " .. path)
+end, { noremap = true, silent = true, desc = "copy current file path" })
 
 -- markdown
 -- bold
