@@ -1,5 +1,5 @@
 -- reload config
-vim.keymap.set('n', '<leader>rs', ':source $MYVIMRC<CR>', { desc = "Reload Config" })
+vim.keymap.set('n', '<leader>rs', ':luafile $MYVIMRC<CR>', { desc = "Reload Config" })
 -- save
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { noremap = true, silent = true, desc = "save current buffer" })
 vim.keymap.set("n", "<leader>W", "<cmd>wa<cr>", { noremap = true, silent = true, desc = "save all buffers" })
