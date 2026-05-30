@@ -13,8 +13,7 @@ return {
     "3rd/image.nvim",
     dependencies = { "luarocks.nvim" },
     event = "VeryLazy",
-    -- enabled = not is_windows,
-    enabled = false,
+    enabled = not is_windows,
     config = function()
       require("image").setup({
         backend = "kitty",
