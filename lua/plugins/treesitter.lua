@@ -3,17 +3,13 @@ local is_nixos = vim.loop.os_uname().sysname == "Linux"
 
 return {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-        "nvim-treesitter/playground",
-    },
-    enabled = false,
-    branch = "main",
+    enabled = true,
     lazy = false,
 
     build = is_nixos and nil or ":TSUpdate",
 
     config = function()
-        require("nvim-treesitter.configs").setup({
+        require("nvim-treesitter.config").setup({
             ensure_installed = is_nixos and {} or {
                 "lua",
                 "nix",
@@ -45,10 +41,6 @@ return {
             },
 
             indent = {
-                enable = true,
-            },
-
-            playground = {
                 enable = true,
             },
         })
