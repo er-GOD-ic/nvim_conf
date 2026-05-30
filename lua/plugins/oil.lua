@@ -35,18 +35,58 @@ return {
                 ["-"] = { "actions.parent", mode = "n" },
                 ["_"] = { "actions.open_cwd", mode = "n" },
                 ["g."] = { "actions.toggle_hidden", mode = "n" },
+                ["g/"] = { "actions.toggle_trash", mode = "n" },
+                ["q"] = { "actions.close", mode = "n" },
             },
         })
-        -- keymaps
-        vim.keymap.set("n", "<leader>e", function()
-            if vim.bo.filetype == "oil" and not vim.api.nvim_buf_get_name(0):match("^oil%-trash") then
+
+        local function is_oil_buffer()
+            return vim.bo.filetype == "oil"
+        end
+        local function is_trash_buffer()
+            return vim.api.nvim_buf_get_name(0):match("^oil%-trash")
+        end
+
+        local function close_oil_buffers()
+            if is_oil_buffer() then
                 oil.close()
-                if vim.api.nvim_buf_get_name(0):match("^oil%-trash") then
+                if is_trash_buffer() then
                     oil.close()
                 end
+                return
+            end
+            if is_trash_buffer() then
+                oil.close()
+            end
+        end
+
+        local function close_oil_windows()
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+                local buf = vim.api.nvim_win_get_buf(win)
+
+                if vim.bo[buf].filetype == "oil" then
+                    vim.api.nvim_win_close(win, true)
+                end
+            end
+        end
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "TelescopePrompt",
+            callback = close_oil_windows,
+        })
+
+        -- keymaps
+        vim.keymap.set("n", "<leader>e", function()
+            if is_oil_buffer() and not is_trash_buffer() then
+                close_oil_buffers()
             else
                 oil.open_float(vim.fn.getcwd())
             end
         end)
+
+        vim.api.nvim_create_autocmd("bufenter", {
+            pattern = "TelescopePrompt",
+            callback = close_oil_windows,
+        })
     end,
 }
