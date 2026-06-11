@@ -3,15 +3,13 @@ return {
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {},
-    dependencies = {
-        "nvim-tree/nvim-web-devicons",
-    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
 
     config = function()
         local oil = require("oil")
         oil.setup({
-            columns = { },
+            columns = {},
             default_file_explorer = true,
             delete_to_trash = true,
             skip_confirm_for_simple_edits = true,
