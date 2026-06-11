@@ -3,12 +3,15 @@ return {
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {},
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+    },
     lazy = false,
 
     config = function()
         local oil = require("oil")
         oil.setup({
+            columns = { },
             default_file_explorer = true,
             delete_to_trash = true,
             skip_confirm_for_simple_edits = true,
@@ -28,15 +31,27 @@ return {
                 border = "rounded",
             },
             keymaps = {
-                ["g?"] = { "actions.show_help", mode = "n" },
+                ["`"] = false,
+                ["g~"] = false,
+                ["g\\"] = false,
+                ["<C-s>"] = false,
+                ["<C-h>"] = false,
+                ["<C-t>"] = false,
+                ["<C-p>"] = false,
+
                 ["<CR>"] = "actions.select",
-                ["<C-c>"] = { "actions.toggle_trash", mode = "n" },
-                ["<C-l>"] = "actions.refresh",
+
                 ["-"] = { "actions.parent", mode = "n" },
                 ["_"] = { "actions.open_cwd", mode = "n" },
-                ["g."] = { "actions.toggle_hidden", mode = "n" },
-                ["g/"] = { "actions.toggle_trash", mode = "n" },
+                ["<C-c>"] = { "actions.toggle_trash", mode = "n" },
+
                 ["q"] = { "actions.close", mode = "n" },
+                ["<C-l>"] = "actions.refresh",
+
+                ["gs"] = { "actions.change_sort", mode = "n" },
+                ["gx"] = "actions.open_external",
+                ["g."] = { "actions.toggle_hidden", mode = "n" },
+                ["g?"] = { "actions.show_help", mode = "n" },
             },
         })
 
@@ -80,7 +95,7 @@ return {
             if is_oil_buffer() and not is_trash_buffer() then
                 close_oil_buffers()
             else
-                oil.open_float(vim.fn.getcwd())
+                oil.open_float()
             end
         end)
 
