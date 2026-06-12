@@ -1,15 +1,10 @@
 return {
     "luukvbaal/statuscol.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- 依存関係を明示
+    dependencies = { "ergodice/statuscol-oil.nvim" },
     event = "BufReadPre",
     enabled = true,
     config = function()
-        local oil_cols = require("config.statuscol-oil")
-        oil_cols.opts = {
-            size_prefer_units = true,
-            size_width = 4,
-            mtime_format = "%Y-%m-%d %H:%M"
-        }
+        local oil_cols = require("statuscol-oil")
 
         require("statuscol").setup({
             setopt = true,
