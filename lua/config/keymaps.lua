@@ -54,4 +54,16 @@ vim.keymap.set("v", "<leader>mu", "di<u><esc>pa</u><esc>")
 vim.keymap.set("n", "<leader>mm", "diwi$<esc>pa$<esc>")
 vim.keymap.set("v", "<leader>mm", "di$<esc>pa$<esc>")
 -- force break
--- vim.keymap.set("i", "<C-M>", "<br><cr>")
+<<<<<<< HEAD
+vim.keymap.set("i", "<C-M>", "<br><cr>")
+
+-- toggle binary / hex
+vim.keymap.set("n", "<leader>b", function()
+    if vim.b.editHex then
+        vim.cmd("%!xxd -r")
+        vim.b.editHex = nil
+    else
+        vim.cmd("%!xxd")
+        vim.b.editHex = true
+    end
+end)
