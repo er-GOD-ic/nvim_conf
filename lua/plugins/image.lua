@@ -1,10 +1,11 @@
 local is_windows = vim.fn.has("win32") == 1
+local is_wsl = vim.fn.has("wsl") == 1
 
 return {
   {
     "vhyrro/luarocks.nvim",
     priority = 1001, -- 最優先で読み込む
-    enabled = not is_windows,
+    enabled = not is_windows and not is_wsl,
     opts = {
       rocks = { "magick" },
     },
@@ -13,7 +14,7 @@ return {
     "3rd/image.nvim",
     dependencies = { "luarocks.nvim" },
     event = "VeryLazy",
-    enabled = not is_windows,
+    enabled = not is_windows and not is_wsl,
     config = function()
       require("image").setup({
         backend = "kitty",

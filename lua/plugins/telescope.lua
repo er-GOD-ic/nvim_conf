@@ -6,6 +6,11 @@ return {
     config = function()
         require("telescope").setup({
             defaults = {
+                mappings = {
+                    n = {
+                        ["q"] = require("telescope.actions").close,
+                    },
+                },
                 preview = {
                     treesitter = false,
                 },
