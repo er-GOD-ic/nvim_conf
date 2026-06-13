@@ -4,7 +4,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
         size_prefer_units = true,
-        size_width = 4,
+        size_width = 5,
         mtime_format = "%Y-%m-%d %H:%M",
     },
 }
