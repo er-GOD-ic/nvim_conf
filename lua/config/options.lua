@@ -11,6 +11,8 @@ vim.opt.cursorline = false
 vim.opt.cursorcolumn = false
 -- sign columun
 vim.o.signcolumn = "yes"
+-- showcmd on lualine
+vim.o.showcmdloc = "statusline"
 -- wrap
 vim.o.wrap = false
 -- scrolloff
