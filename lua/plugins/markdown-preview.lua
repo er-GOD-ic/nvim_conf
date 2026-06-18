@@ -25,6 +25,7 @@ return {
         if result.code ~= 0 then
             vim.notify(result.stderr, vim.log.levels.ERROR)
         end
+        vim.notify("build was successfully compleated.")
     end,
     config = function()
         vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<cr>")
