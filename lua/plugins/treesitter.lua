@@ -1,5 +1,4 @@
-local is_nixos = vim.loop.os_uname().sysname == "Linux"
-    and vim.fn.isdirectory("/nix/store") == 1
+local is_nixos = vim.loop.os_uname().sysname == "Linux" and vim.fn.isdirectory("/nix/store") == 1
 
 return {
     "nvim-treesitter/nvim-treesitter",
@@ -31,18 +30,14 @@ return {
                 "gitignore",
                 "json",
                 "hjson",
+                "prisma",
             },
 
             sync_install = false,
             auto_install = not is_nixos,
 
-            highlight = {
-                enable = true,
-            },
-
-            indent = {
-                enable = true,
-            },
+            highlight = { enable = true },
+            indent = { enable = true },
         })
     end,
 }
