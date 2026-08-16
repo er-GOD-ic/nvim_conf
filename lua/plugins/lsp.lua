@@ -6,12 +6,15 @@ return {
         -- all clients
         vim.lsp.config("*", { capabilities = capabilities })
 
-        vim.lsp.enable("lua_ls")  -- lua
-        vim.lsp.enable("nixd")    -- nix
+        vim.lsp.enable("lua_ls") -- lua
+        vim.lsp.enable("nixd") -- nix
         vim.lsp.enable("rust-analyzer") -- rust
-        vim.lsp.enable("jdtls")   -- java
-        vim.lsp.enable("clangd")  -- c, cpp
-        vim.lsp.enable("ts_ls")     -- ts
+        vim.lsp.enable("jdtls") -- java
+        vim.lsp.enable("clangd") -- c, cpp
+        vim.lsp.enable("ts_ls") -- ts
+        vim.lsp.enable("texlab") -- tex
+        vim.lsp.enable("pyright") -- python
+        vim.lsp.enable("prisma") -- prisma
 
         vim.diagnostic.config({
             virtual_text = true,
