@@ -1,6 +1,7 @@
 return {
     {
         "stevearc/oil.nvim",
+        -- dir = "/home/ergodic/.config/nvim-plugins/oil.nvim",
         ---@module 'oil'
         ---@type oil.SetupOpts
         opts = {},
@@ -10,15 +11,44 @@ return {
         config = function()
             local oil = require("oil")
             oil.setup({
-                columns = {},
+                columns = {
+                    -- "permissions",
+                    -- "size",
+                    -- "mtime",
+                    -- "icon",
+                },
                 default_file_explorer = true,
                 delete_to_trash = true,
                 skip_confirm_for_simple_edits = true,
                 view_options = {
                     show_hidden = true,
                     natural_order = true,
-                    is_always_hidden = function(name, _)
-                        return name == ".." or name == ".git"
+                    is_always_hidden = function(name, bufnr)
+                        return vim.tbl_contains({
+                            -- parent
+                            "..",
+                            -- dependencies / generated
+                            "node_modules",
+                            ".pnpm-store",
+
+                            -- build output
+                            "dist",
+                            "build",
+                            ".next",
+                            ".nuxt",
+                            ".output",
+
+                            -- vcs
+                            ".git",
+
+                            -- cache
+                            ".cache",
+                            ".turbo",
+                            ".parcel-cache",
+
+                            -- editor
+                            ".DS_Store",
+                        }, name)
                     end,
                 },
                 float = {
@@ -28,7 +58,7 @@ return {
                     preview_split = "right",
                 },
                 win_options = {
-                    wrap = true,
+                    wrap = false,
                 },
                 keymaps = {
                     ["`"] = false,
@@ -95,7 +125,8 @@ return {
                 if is_oil_buffer() and not is_trash_buffer() then
                     close_oil_buffers()
                 else
-                    oil.open_float(nil, { preview = { vertical = true } })
+                    -- oil.open_float(nil, { preview = { vertical = true } })
+                    oil.open_float(nil)
                 end
             end)
 
@@ -107,10 +138,12 @@ return {
     },
     { -- git
         "benomahony/oil-git.nvim",
+        enabled = false,
     },
     { -- display info in statsucol
         "ergodice/statuscol-oil.nvim",
         -- dir = "/home/ergodic/.config/nvim-plugins/statuscol-oil.nvim/",
+        enabled = true,
         opts = {
             size_prefer_units = true,
             size_width = 5,
