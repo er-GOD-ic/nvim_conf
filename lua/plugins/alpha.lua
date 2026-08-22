@@ -73,7 +73,8 @@ return {
         build_buttons = function(in_config)
             local buttons = {
                 dashboard.button("e", "󰣞  Open Oil", function()
-                    require("oil").toggle_float(vim.fn.getcwd())
+                    require("oil").open_float()
+                    -- require("oil").open_float(nil, { preview = { vertical = true } })
                 end),
                 dashboard.button("f", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
                 dashboard.button("g", "󰈬  Find word", "<cmd>Telescope live_grep<CR>"),

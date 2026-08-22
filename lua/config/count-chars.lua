@@ -1,7 +1,7 @@
 local M = {}
 
 M.config = {
-    ft = { "markdown", "text" },
+    ft = { "markdown", "text", "tex", "latex" },
 }
 
 M.total_chars = function()

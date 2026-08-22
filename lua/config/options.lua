@@ -18,8 +18,15 @@ vim.o.wrap = false
 -- scrolloff
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 15
--- fillchar
+-- fillchar/listchars
 vim.opt.fillchars = { eob = " " }
+
+vim.opt.list = true
+vim.opt.listchars:append({
+    tab = " ",
+    trail = '·',
+    nbsp = '␣',
+})
 -- indent
 vim.opt.smartindent = true
 vim.opt.expandtab = true

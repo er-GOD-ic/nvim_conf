@@ -3,17 +3,21 @@ return {
     version = "*",
     config = function()
         require("toggleterm").setup({
+            -- open_mapping = [[<leader>t]],
             use_libuv_file_watcher = true,
             size = 13,
+            direction = 'float',
+            float_opts = {
+                border = 'curved',
+                title_pos = 'left',
+            },
         })
 
-        -- keymaps
-        vim.keymap.set("n", "<leader>t", function()
-            require("toggleterm").toggle(1, nil, vim.fn.getcwd())
-        end, {
-            noremap = true,
-            silent = true,
-            desc = "toggle terminal",
+        vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<cr>")
+        vim.api.nvim_create_autocmd("TermOpen", {
+            callback = function(args)
+                vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = args.buf, silent = true })
+            end,
         })
     end,
 }

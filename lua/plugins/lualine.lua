@@ -7,22 +7,12 @@ return {
         local CountChars = require("config.count-chars")
 
         require("lualine").setup({
-            options = {
-                theme = "nightfly",
-                disabled_filetypes = {
-                    statusline = {
-                        "oil",
-                    },
-                    winbar = {
-                        "oil",
-                    },
-                },
-            },
+            options = { theme = "nightfly" },
 
             sections = {
                 lualine_b = {
-                    "filename",
-                    "diff",
+                    { "filename", path = 1 },
+                    { "diff",     symbols = { added = " ", modified = " ", removed = " " } },
                     CountChars.char_count,
                 },
 

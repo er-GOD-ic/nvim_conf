@@ -29,5 +29,12 @@ return {
     end,
     config = function()
         vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<cr>")
+
+        -- bold
+        vim.keymap.set("n", "<leader>mb", "ciw****<esc>hP")
+        vim.keymap.set("v", "<leader>mb", "c****<esc>hP")
+        -- math block
+        vim.keymap.set("n", "<leader>mm", "ciw$$<esc>P")
+        vim.keymap.set("v", "<leader>mm", "c$$<esc>P")
     end,
 }
