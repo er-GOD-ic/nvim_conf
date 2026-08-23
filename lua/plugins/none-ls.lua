@@ -3,13 +3,14 @@ return {
     config = function()
         local null_ls = require("null-ls")
 
+        -- rust
         local rustfmt = {
             method = null_ls.methods.FORMATTING,
-            filetypes = { "rust" }, -- Rust ファイル対象
+            filetypes = { "rust" },
             generator = null_ls.generator({
-                command = "rustfmt", -- 実行するコマンド
-                args = { "--emit", "stdout" }, -- 標準出力に整形結果を出力
-                to_stdin = true,   -- 標準入力から内容を渡す
+                command = "rustfmt",
+                args = { "--emit", "stdout" },
+                to_stdin = true,
             }),
         }
 
