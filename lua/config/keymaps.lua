@@ -1,7 +1,7 @@
 -- save/quit
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { noremap = true, silent = true, desc = "save current buffer" })
-vim.keymap.set("n", "<leader><leader>w", "<cmd>wa<cr>", { noremap = true, silent = true, desc = "save all buffers" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { noremap = true, silent = true, desc = "close current buffer" })
+vim.keymap.set("n", "<leader><leader>w", "<cmd>wa<cr>", { noremap = true, silent = true, desc = "save all buffers" })
 vim.keymap.set("n", "<leader><leader>q", "<cmd>qa<cr>", { noremap = true, silent = true, desc = "quit neovim" })
 vim.keymap.set("n", "<leader>!", function()
     local choice = vim.fn.confirm("Really quit Neovim?", "&Yes\n&No", 2)
