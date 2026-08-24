@@ -37,6 +37,7 @@ vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus"
 -- split window
 vim.opt.splitkeep = "screen"
+vim.opt.equalalways = false
 
 -- encoding
 vim.opt.encoding = "utf-8"
